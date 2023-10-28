@@ -33,3 +33,7 @@ p,
 ul {
   @apply leading-loose;
 }
+
+ul {
+  @apply list-inside;
+}

@@ -26,12 +26,16 @@ export default function Page() {
         understanding in this field through research.
       </p>
       <p className="mt-4">
-        I received a BS in Computer Science from Monash University in June 2023.
+        I received a BS in Computer Science from{" "}
+        <CustomLink href="https://www.monash.edu/">
+          Monash University
+        </CustomLink>{" "}
+        in June 2023.
       </p>
       <h2 className="mt-6 font-bold text-lg">Say hi!</h2>
       <p className="mt-2 mb-4">
-        I like meeting new people and learn about your interest. Let's be
-        friends :)
+        I like meeting new people and learning about your work. Let's be friends
+        :)
       </p>
       <ul className="list-disc">
         <li>
