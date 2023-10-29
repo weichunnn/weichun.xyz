@@ -1,4 +1,4 @@
-# weichun.io
+# weichun.xyz
 
 Garden to leave some mark on the internet.
 

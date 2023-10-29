@@ -39,9 +39,7 @@ export default function Page() {
       </p>
       <ul className="list-disc">
         <li>
-          <CustomLink href="https://twitter.com/wei__chunnn">
-            Twitter
-          </CustomLink>
+          <CustomLink href="https://twitter.com/_weichunnn">Twitter</CustomLink>
         </li>
         <li>
           <CustomLink href="https://github.com/weichunnn">GitHub</CustomLink>

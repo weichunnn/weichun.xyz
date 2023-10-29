@@ -2,7 +2,7 @@ import "./globals.css";
 
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
-import Sidebar from "@/components/Sidebar";
+import Menubar from "@/components/Menubar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,7 +24,7 @@ export default function RootLayout({
         <main className="px-6 mt-10 mx-auto md:max-w-4xl md:px-12 md:mt-20 ">
           <div className="flex flex-col md:flex-row">
             <div className="pb-10 w-full md:max-w-[12rem]">
-              <Sidebar />
+              <Menubar />
             </div>
             <div className="flex-grow">{children}</div>
           </div>

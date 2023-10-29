@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function Sidebar() {
+export default function Menubar() {
   return (
     <>
       <div className="flex align-center justify-center md:justify-start">
@@ -9,8 +9,8 @@ export default function Sidebar() {
         </Link>
       </div>
       <div className="flex align-center justify-center flex-wrap space-x-4 md:space-x-0 md:justify-start md:flex-col md:space-y-4">
-        <Link href="/blog">blog</Link>
         <Link href="/now">now</Link>
+        <Link href="/blog">blog</Link>
       </div>
     </>
   );
