@@ -26,11 +26,26 @@ const CustomLink = (props: any) => {
   );
 };
 
+const CustomImage = (props: any) => {
+  return (
+    <>
+      <Image
+        {...props}
+        className="rounded-xl mb-4"
+        layout="responsive"
+        width={600}
+        height={400}
+      />
+      <p className="text-center text-sm text-gray-500 mt-0">{props.alt}</p>
+    </>
+  );
+};
+
 const MDXComponents = {
-  Image,
+  Image: CustomImage,
   a: CustomLink,
 };
 
-export { CustomLink };
+export { CustomLink, CustomImage };
 
 export default MDXComponents;
