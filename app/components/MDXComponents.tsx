@@ -19,7 +19,7 @@ const CustomLink = (props: any) => {
       {...linkAttributes}
       className={
         className != "anchor"
-          ? "font-bold no-underline bg-slate-200 py-1 px-2 rounded-lg text-emerald-700 hover:text-emerald-300"
+          ? "font-bold no-underline bg-slate-200 py-1 px-2 rounded-lg text-emerald-700 hover:text-emerald-400 whitespace-nowrap"
           : className
       }
     />

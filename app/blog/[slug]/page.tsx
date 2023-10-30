@@ -42,7 +42,7 @@ function BlogHeader({
           {tags.map((tag, index) => (
             <li
               key={index}
-              className="bg-gray-200 py-1 px-2 mr-2 mb-2 inline-block rounded-lg font-bold"
+              className="bg-zinc-200 text-slate-600 px-3 mr-2 mb-2 inline-block rounded-lg font-bold"
             >
               #{tag}
             </li>
