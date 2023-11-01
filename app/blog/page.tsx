@@ -16,7 +16,7 @@ export default function Page() {
           <Link key={index} href={`/blog/${blog.slug}`}>
             <div className="flex flex-row items-center justify-between">
               <span key={blog._id}>{blog.title}</span>
-              <span>{format(new Date(blog.publishedAt), "dd-MM-yyyy")}</span>
+              <span>{format(new Date(blog.publishedAt), "MMMM dd, yyyy")}</span>
             </div>
           </Link>
         ))}
