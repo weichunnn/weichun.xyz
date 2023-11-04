@@ -9,7 +9,7 @@ export async function GET(req: NextRequest) {
   const title = searchParams.get("title");
 
   const font = fetch(
-    new URL("../../../public/fonts/inter-bold.ttf", import.meta.url)
+    new URL("../../../public/fonts/barlow-bold.ttf", import.meta.url)
   ).then((res) => res.arrayBuffer());
   const fontData = await font;
 
@@ -30,13 +30,24 @@ export async function GET(req: NextRequest) {
         <div
           style={{
             fontSize: 80,
-            fontFamily: "Inter",
+            fontFamily: "Barlow",
             fontStyle: "normal",
             color: "white",
           }}
         >
           {title}
         </div>
+        <p
+          style={{
+            fontSize: 40,
+            paddingTop: 40,
+            fontFamily: "barlow",
+            fontStyle: "normal",
+            color: "white",
+          }}
+        >
+          Wei Chun
+        </p>
       </div>
     ),
     {
@@ -44,7 +55,7 @@ export async function GET(req: NextRequest) {
       height: 630,
       fonts: [
         {
-          name: "Inter",
+          name: "Barlow",
           data: fontData,
           style: "normal",
         },
