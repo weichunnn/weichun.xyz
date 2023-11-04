@@ -29,7 +29,7 @@ export async function GET(req: NextRequest) {
       >
         <div
           style={{
-            fontSize: 80,
+            fontSize: 100,
             fontFamily: "Barlow",
             fontStyle: "normal",
             color: "white",
