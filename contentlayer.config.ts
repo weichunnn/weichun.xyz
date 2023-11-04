@@ -89,13 +89,12 @@ export default makeSource({
           },
         } satisfies Partial<AutolinkOptions>,
       ],
-
       [
         rehypePrettyCode,
         {
           theme: {
-            // light: 'github-light',
-            dark: "github-dark",
+            // light: "github-light",
+            dark: "one-dark-pro",
           },
         } satisfies Partial<PrettyCodeOptions>,
       ],

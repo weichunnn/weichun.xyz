@@ -1,0 +1,79 @@
+---
+title: Embeddings
+publishedAt: 2023-11-04T16:32:04+0800
+summary:
+tags:
+  - llm
+  - til
+---
+
+Everyone is talking about LLM, OpenAI and Embeddings, but do we actually know how it works?
+
+On a high level, this is a great diagram on [how LLM application works in the real world](https://github.blog/2023-10-30-the-architecture-of-todays-llm-applications/).
+
+<Image
+  src="/images/llm.png"
+  width={500}
+  height={500}
+  alt="High level workflow for LLM use case"
+/>
+
+Here are some of my notes that I derived from Simon Willison's [article](https://simonwillison.net/2021/Feb/6/llm/) trying to understand how embeddings work.
+
+## Embeddings
+
+- Take a piece of content and turn that piece into an array of floating numbers, we call as vectors.
+- Regardless of length of content, embeddings will produce the same length of vectors (depending on the embedding model used)
+- Vectors are coordinates in a multi-dimensional space (this is usually too big for us to visualize as it is usually ~1000 dimensions, see [PCA](#principal-component-analysis-pca) below on overcoming this)
+- Location in the space encodes the semantic meaning
+- Extremely cheap to do - OpenAI charged $0.0001 / 1000 tokens
+
+## Embedding models
+
+- Research stems from [word2vec](https://arxiv.org/pdf/1301.3781.pdf)
+- Word2vec is a shallow neural network that uses backpropagation to train the model to encode similarity
+  - Model is trained to maximise output when the predicted word is close to the actual word (goodness) and minimise output for words that are not neighboring (badness)
+  - Similar words within the training dataset can have similar embeddings
+- [StatQuest](https://www.youtube.com/watch?v=viZrOnJclY0) explains the concept of word2vec very well
+
+## Vector database
+
+- Databases that are optimized for storing vectors (a.k.a embeddings)
+- Tuned for running nearest-neighbor queries
+- Examples of vector databases
+  - [Milvus](https://milvus.io/)
+  - [Pinecone](pinecone.io)
+  - [LanceDB](https://lancedb.com/)
+  - [TurboPuffer](https://turbopuffer.com/) - Suprisingly this is very cheap
+
+## Relating contents
+
+- Proximity between 2 vectors shows that 2 content are related
+- Distance is usually calculated using cosine similarity although other similar methods are available
+
+```python
+def cosine_similarity(a, b):
+    dot_product = sum(x * y for x, y in zip(a, b))
+    magnitude_a = sum(x * x for x in a) ** 0.5
+    magnitude_b = sum(x * x for x in b) ** 0.5
+    return dot_product / (magnitude_a * magnitude_b)
+```
+
+## CLIP
+
+- Model by OpenAI that allows users to embed both images and content into the same space so users can query both at once
+- Trained on 400 million image and text pairs from the internet
+- Given an image, it is able to give the best caption possible
+
+## Principal Component Analysis (PCA)
+
+- Highly dimensional space is hard to visualize
+- A technique called PCA can be used to reduce the dimension to a more manageable size while still capturing useful semantics
+
+## Retrieval-Augemented Generation (RAG)
+
+> The key idea is this: a user asks a question. You search your private documents for content that appears relevant to the question,
+> then paste excerpts of that content into the LLM (respecting its size limit, usually between 3,000 and 6,000 words) along with the original question.
+
+- Trivial to implement as all it takes is to embed existing content into a database (vector or traditional)
+- Prior to quering the LLM, users will query their personal database first to retrieve context and submit the context + question together
