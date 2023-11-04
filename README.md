@@ -14,3 +14,4 @@ This is inspired by
   - https://www.youtube.com/watch?v=1HnO2EoKeWc
   - https://contentlayer.dev/docs/sources/files/mdx-d747e46d
   - https://www.kozhuhds.com/blog/how-to-build-a-static-mdx-blog-with-nextjs-and-contentlayer#test-mdx-file
+- https://delba.dev/blog/next-blog-build-time-syntax-highlighting

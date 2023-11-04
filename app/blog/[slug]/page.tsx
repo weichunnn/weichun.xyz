@@ -36,6 +36,9 @@ export function generateMetadata({
 
   const { title, summary, publishedAt } = blog;
   const description = summary;
+  const ogImage = {
+    url: `${HOST}/api/og?title=${title}`,
+  };
 
   return {
     metadataBase: new URL(HOST),
@@ -46,11 +49,13 @@ export function generateMetadata({
       url: `${HOST}/blog/${slug}`,
       title,
       description,
+      images: [ogImage],
       publishedTime: publishedAt,
     },
     twitter: {
       title,
       description,
+      images: ogImage,
       card: "summary_large_image",
     },
   };
