@@ -10,8 +10,8 @@ export default function Menubar() {
       </div>
       <div className="flex align-center justify-center flex-wrap space-x-4 md:space-x-0 md:justify-start md:flex-col md:space-y-4">
         <Link href="/me">me</Link>
-        <Link href="/now">now</Link>
         <Link href="/blog">blog</Link>
+        <Link href="/now">now</Link>
       </div>
     </>
   );
