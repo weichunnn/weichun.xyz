@@ -29,7 +29,12 @@ const CustomLink = (props: any) => {
 const CustomImage = (props: any) => {
   return (
     <>
-      <Image {...props} className="rounded-xl mb-4" width={600} height={400} />
+      <Image
+        width={600}
+        height={400}
+        className="rounded-xl mb-4 m-auto"
+        {...props}
+      />
       <p className="text-center text-sm text-gray-500 mt-0">{props.alt}</p>
     </>
   );
