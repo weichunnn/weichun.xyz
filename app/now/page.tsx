@@ -17,7 +17,6 @@ export default function Page() {
         <li>Capturing daily learning through writing</li>
         <li>More hackathons</li>
         <li>Applying to Grad School</li>
-        <li>Reading up on Lakehouse Approach</li>
         <li>Trying to contribute to OSS</li>
       </ul>
     </>
