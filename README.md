@@ -20,3 +20,4 @@ This is inspired by
 
 - [ ] Movies that surprised you
 - [ ] 1 picture a day / 1 thought a day
+- [ ] Highlights with pastel color - https://eugeneyan.com/writing/finetuning/
