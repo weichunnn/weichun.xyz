@@ -5,7 +5,7 @@ export default function Menubar() {
     <>
       <div className="flex align-center justify-center md:justify-start">
         <Link className="text-2xl mb-6 font-bold" href="/">
-          weichun
+          曾伟骏
         </Link>
       </div>
       <div className="flex align-center justify-center flex-wrap space-x-4 md:space-x-0 md:justify-start md:flex-col md:space-y-4">
