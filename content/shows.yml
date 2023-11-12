@@ -1,0 +1,47 @@
+sci-fi:
+  movie:
+    - Time Lapse (2015)
+    - Primer
+    - Coherence
+    - Predestination
+    - The Cloverfield Paradox
+    - Dune
+    - 10 Cloverfield Lane
+    - Interstellar
+  series:
+    - 1899
+    - Dark
+    - Foundation
+    - For All Mankind
+    - The Rig
+    - Invasion
+
+comedy:
+  movie:
+    - Don't Look Up
+  series:
+    - Space Force
+    - Silicon Valley
+
+adventure:
+  movie:
+    - Underwater
+  series:
+    - Ozark
+
+romance:
+  movie:
+    - The Before Trilogy
+    - Notting Hill
+    - Crazy Rich Asian
+    - To All The Boys I Love
+
+special:
+  series:
+    - Suits
+    - White Collar
+
+horror:
+  movie:
+    - A Quiet Place I && II
+    - The Mist
