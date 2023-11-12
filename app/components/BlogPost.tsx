@@ -8,20 +8,20 @@ import TagList from "./TagsList";
 
 function BlogHeader({
   title,
-  readTime,
   date,
-  summary,
-  tags,
-  minimal,
+  readTime,
   slug,
+  tags = [],
+  summary,
+  minimal,
 }: {
   title: string;
   date: string;
   readTime: number;
-  summary?: string;
-  tags?: string[];
-  minimal?: boolean;
   slug: string;
+  tags: string[];
+  summary?: string;
+  minimal?: boolean;
 }) {
   const publishedAt = new Date(date);
   const timeAgo = formatDistance(publishedAt, new Date(), {
@@ -38,7 +38,7 @@ function BlogHeader({
         <Header title={title} className="mb-0" />
       </Link>
       <p className="my-2">{timestampInformation}</p>
-      <TagList tags={tags} />
+      <TagList tags={tags} prefix="tag" />
       {summary && !minimal && <p className="text-md">tldr: {summary}</p>}
     </>
   );
