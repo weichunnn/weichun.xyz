@@ -20,4 +20,5 @@ This is inspired by
 
 - [ ] Movies that surprised you
 - [ ] 1 picture a day / 1 thought a day
+- [ ] World map - https://github.com/visgl/react-google-maps
 - [ ] Highlights with pastel color - https://eugeneyan.com/writing/finetuning/
