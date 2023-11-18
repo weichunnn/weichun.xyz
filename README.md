@@ -12,6 +12,8 @@ This blog page is heavily inspired by
 
 ## Features
 
+Some things I find interesting from other blogs
+
 - [x] Movies / Series list
 - [x] 1 picture a day / 1 thought a day
 - [ ] World map to track places visited - https://github.com/visgl/react-google-maps
