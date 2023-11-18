@@ -11,9 +11,11 @@ export default function BlogList({ blogs }: { blogs: Blog[] }) {
     <div className="grid grid-cols-1 gap-2">
       {sortedBlogs.map((blog, index) => (
         <Link key={index} href={`/blog/${blog.slug}`}>
-          <div className="flex flex-row items-center justify-between">
-            <span key={blog._id}>{blog.title}</span>
-            <span>{format(new Date(blog.publishedAt), "MMMM dd, yyyy")}</span>
+          <div className="flex flex-row  justify-between gap-4">
+            <span className="flex-1" key={blog._id}>
+              {blog.title}
+            </span>
+            <span>{format(new Date(blog.publishedAt), "MMM dd, yyyy")}</span>
           </div>
         </Link>
       ))}
