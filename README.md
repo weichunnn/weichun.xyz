@@ -1,24 +1,26 @@
 # weichun.xyz
 
-Garden to leave some mark on the internet.
+![Thumbnail](/public/thumbnail.png)
 
-This is inspired by
+A small internet garden to leave some traces of myself on the WWW.
+
+This blog page is heavily inspired by
 
 - [leerob.io](https://leerob.io/)
 - [jquiambao.com](https://www.jquiambao.com/)
 - [jzhao.xyz](https://jzhao.xyz/)
 
-## Keep for Later
-
-- contentlayer
-  - https://www.youtube.com/watch?v=1HnO2EoKeWc
-  - https://contentlayer.dev/docs/sources/files/mdx-d747e46d
-  - https://www.kozhuhds.com/blog/how-to-build-a-static-mdx-blog-with-nextjs-and-contentlayer#test-mdx-file
-- https://delba.dev/blog/next-blog-build-time-syntax-highlighting
-
 ## Features
 
-- [ ] Movies that surprised you
-- [ ] 1 picture a day / 1 thought a day
-- [ ] World map - https://github.com/visgl/react-google-maps
+- [x] Movies / Series list
+- [x] 1 picture a day / 1 thought a day
+- [ ] World map to track places visited - https://github.com/visgl/react-google-maps
 - [ ] Highlights with pastel color - https://eugeneyan.com/writing/finetuning/
+
+## References
+
+- Contentlayer
+  - [What is Contentlayer](https://www.youtube.com/watch?v=1HnO2EoKeWc)
+  - [MDX docs](https://contentlayer.dev/docs/sources/files/mdx-d747e46d)
+  - [Blog x ContentLayer integration](https://www.kozhuhds.com/blog/how-to-build-a-static-mdx-blog-with-nextjs-and-contentlayer#test-mdx-file)
+- [Code Syntax highlighting](https://delba.dev/blog/next-blog-build-time-syntax-highlighting)
