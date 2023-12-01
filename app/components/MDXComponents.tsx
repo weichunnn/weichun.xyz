@@ -40,7 +40,20 @@ const CustomImage = (props: any) => {
   );
 };
 
+const Embed = ({ src, ...props }: { src: string; props: any }) => {
+  return (
+    <iframe
+      className="aspect-video w-full rounded-xl"
+      src={src}
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+      {...props}
+    />
+  );
+};
+
 const MDXComponents = {
+  Embed: Embed,
   Image: CustomImage,
   a: CustomLink,
 };
