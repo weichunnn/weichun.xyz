@@ -3,7 +3,7 @@ title: What Happens When You Visit a Website?
 publishedAt: 2023-12-09T12:43:02+0800
 summary:
 tags:
-  - placeholder
+  - til
 ---
 
 To reach a website, the computer typically sends [packets](https://www.cloudflare.com/learning/network-layer/what-is-a-packet/) through the internet to a server, which then responds with the content.
@@ -20,11 +20,11 @@ The browser first checks if the domain name is in the cache. If it is, it return
 If not, it sends a request to a DNS recursor, also known as the DNS resolver, typically run by your ISP (Internet Service Provider).
 This serves as the middleman for any DNS-related queries.
 
-The second stop is the root nameserver. These servers map the location of the top-level domain (TLD) servers, such as .com, .io, .xyz, etc.
+The second stop is the root nameserver. These servers map the location of the top-level domain (TLD) servers, such as `.com, .io, .xyz` etc.
 They return the IP address of the TLD server responsible for the domain name.
 
 Next, the same process happens within the TLD server to find the IP address of the authoritative nameserver responsible for the domain name.
-For example, if the domain name is `example.com`, the current TLD server (which is responsible for .com) will return the IP address of the authoritative nameserver for `example`.
+For example, if the domain name is `weichun.xyz`, the current TLD server (which is responsible for `.xyz`) will return the IP address of the authoritative nameserver for `weichun`.
 
 The authoritative nameserver is the last nameserver in the chain. This server stores all the configuration (which you configured on sites such as GoDaddy, domain.com, or name.com) related to the domain.
 It responds with the IP address of the domain name.
