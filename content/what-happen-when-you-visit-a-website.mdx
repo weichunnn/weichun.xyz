@@ -1,0 +1,56 @@
+---
+title: What happen when you visit a website?
+publishedAt: 2023-12-09T12:43:02+0800
+summary:
+tags:
+  - placeholder
+---
+
+To reach a website, the computer typically sends [packets](https://www.cloudflare.com/learning/network-layer/what-is-a-packet/) through the internet to a server, which then responds with the content.
+Behind the scenes, a lot of things happen to make this possible.
+
+Here's my attempt at explaining the internet (after you type in the URL):
+
+## DNS Resolution
+
+The first thing that happens is DNS resolution. DNS stands for Domain Name System.
+It is a system that translates domain names to IP addresses. Because nobody likes remembering a vague 4-digit address rather than a name.
+
+The browser first checks if the domain name is in the cache. If it is, it returns the IP address from the cache.
+If not, it sends a request to a DNS recursor, also known as the DNS resolver, typically run by your ISP (Internet Service Provider).
+This serves as the middleman for any DNS-related queries.
+
+The second stop is the root nameserver. These servers map the location of the top-level domain (TLD) servers, such as .com, .io, .xyz, etc.
+They return the IP address of the TLD server responsible for the domain name.
+
+Next, the same process happens within the TLD server to find the IP address of the authoritative nameserver responsible for the domain name.
+For example, if the domain name is `example.com`, the current TLD server (which is responsible for .com) will return the IP address of the authoritative nameserver for `example`.
+
+The authoritative nameserver is the last nameserver in the chain. This server stores all the configuration (which you configured on sites such as GoDaddy, domain.com, or name.com) related to the domain.
+It responds with the IP address of the domain name.
+If it's not available, then it returns an error.
+
+The DNS resolver then caches the IP address and returns it to the browser to be loaded.
+
+## How Does the Packet Move?
+
+The request first travels from your computer to the router, then to your ISP (Internet Service Provider).
+From there, the request is routed via the BGP protocol to various Autonomous Systems (AS).
+
+AS are collections of routers or servers owned by a single entity. These entities collectively shape the internet we know today.
+Each AS decides the 'peering agreement' with other AS. Although the internet is supposed to be open, there's a lot of politics and bureaucracy involved in the process.
+Each AS is identified by an ASN (Autonomous System Number) and this is used to determine which network to pass your request over to be routed.
+With enough Points of Presence, you can even [register](https://superuser.com/a/1172481) to be an AS yourself via the [Regional Internet Registry](https://en.wikipedia.org/wiki/Regional_Internet_registry).
+
+To communicate with each other, BGP serves as the standard routing protocol.
+Routers at the end of each network keep a list of BGP routes, called a routing table.
+These tables store a key-value mapping of IP addresses to ASN.
+
+These routes are formed through the peering agreements mentioned above.
+When two AS communicate, they
+
+- Allow traffic to pass through between their networks
+- Update each other on the BGP routes they know (this is how propagation takes place and why it takes quite some time due to a large amount of caching happening)
+
+When a request is made, the border router then searches for all possible paths to the AS that controls the IP address and picks the route based on
+a predefined algorithm, for example, the shortest path or lowest cost. It then sends the request, and the process repeats itself in the next AS.
