@@ -9,13 +9,13 @@ sci-fi:
     - 10 Cloverfield Lane
     - Interstellar
   series:
+    - The Expanse (#1)
     - 1899
     - Dark
     - Foundation
     - For All Mankind
     - The Rig
     - Invasion
-
 comedy:
   movie:
     - Don't Look Up
@@ -49,3 +49,4 @@ horror:
 documentary:
   series:
     - Chernobyl
+    - The Looming Tower
