@@ -4,7 +4,7 @@ export default function Menubar() {
   return (
     <>
       <div className="flex align-center justify-center md:justify-start">
-        <Link className="text-2xl mb-6 font-bold" href="/">
+        <Link className="text-xl mb-6 font-bold" href="/">
           曾伟骏
         </Link>
       </div>

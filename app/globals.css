@@ -21,6 +21,13 @@
 }
 
 p,
+span,
+a,
+li {
+  @apply text-sm;
+}
+
+p,
 ul {
   @apply leading-loose;
 }

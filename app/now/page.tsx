@@ -12,7 +12,7 @@ export default function Page() {
       </p>
 
       <h2 className="mt-6 mb-2 font-bold text-lg">On my hands</h2>
-      <ul className="list-disc">
+      <ul className="list-disc grid gap-2">
         <li>Work work work</li>
         <li>Capturing daily learning through writing</li>
         <li>More hackathons</li>
