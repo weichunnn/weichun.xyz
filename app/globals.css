@@ -28,12 +28,9 @@ li {
 }
 
 p,
-ul {
+ul,
+li {
   @apply leading-loose;
-}
-
-ul {
-  @apply list-inside;
 }
 
 li {
