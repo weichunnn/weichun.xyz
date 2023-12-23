@@ -14,7 +14,7 @@ export default function Page() {
   );
 
   const searchClient = {
-    search(requests) {
+    search(requests: any) {
       if (requests[0].params.query === "") {
         return [];
       }

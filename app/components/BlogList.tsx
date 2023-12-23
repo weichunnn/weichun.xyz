@@ -1,7 +1,14 @@
 import { compareDesc, format } from "date-fns";
 import Link from "next/link";
 
-export default function BlogList({ blogs }: { blogs: any }) {
+interface Blog {
+  _id: string;
+  title: string;
+  slug: string;
+  publishedAt: string;
+}
+
+export default function BlogList({ blogs }: { blogs: Blog[] }) {
   const sortedBlogs = blogs.sort((a, b) =>
     compareDesc(new Date(a.publishedAt), new Date(b.publishedAt))
   );
