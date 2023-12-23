@@ -15,7 +15,7 @@ export default function Menubar() {
         <Link href="/favorites">favorites</Link>
         <Link href="/search">search</Link>
         <Link
-          href="https://weichunnn.notion.site/Story-of-My-Life-0995d02d3ba0427ba5b957b7f16a46ce"
+          href="https://photos.app.goo.gl/xaPtj5UcbkitijjK9"
           target="_blank"
         >
           pictures
