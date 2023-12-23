@@ -1,7 +1,7 @@
 "use client";
 
 import algoliasearch from "algoliasearch/lite";
-import { InstantSearch } from "react-instantsearch-dom";
+import { InstantSearch, connectSearchBox } from "react-instantsearch-dom";
 import { connectStateResults } from "react-instantsearch-dom";
 
 import Header from "@/components/Header";
@@ -23,7 +23,7 @@ export default function Page() {
   };
 
   const CustomHits = connectStateResults(Hits);
-  const CustomSearchBox = connectStateResults(SearchBox as any);
+  const CustomSearchBox = connectSearchBox(SearchBox);
 
   return (
     <>
@@ -81,7 +81,7 @@ function Hits({
         <p>Aw snap! No search results were found.</p>
       )}
       {searchState && searchState.query && searchResults?.hits.length > 0 && (
-        <BlogList blogs={searchResults.hits} />
+        <BlogList blogs={searchResults.hits} sorted={false} />
       )}
     </>
   );
