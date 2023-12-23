@@ -54,7 +54,7 @@ export default function BlogPost({
   const MDXContent = getMDXComponent(blog.body.code);
 
   return (
-    <article className="prose prose-slate m-0">
+    <article className="prose prose-sm prose-slate m-0">
       <BlogHeader
         title={blog.title}
         date={blog.publishedAt}
