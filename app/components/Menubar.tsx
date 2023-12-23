@@ -13,6 +13,7 @@ export default function Menubar() {
         <Link href="/blog">blog</Link>
         <Link href="/now">now</Link>
         <Link href="/favorites">favorites</Link>
+        <Link href="/search">search</Link>
         <Link
           href="https://weichunnn.notion.site/Story-of-My-Life-0995d02d3ba0427ba5b957b7f16a46ce"
           target="_blank"

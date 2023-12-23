@@ -1,8 +1,7 @@
-import { Blog } from "contentlayer/generated";
 import { compareDesc, format } from "date-fns";
 import Link from "next/link";
 
-export default function BlogList({ blogs }: { blogs: Blog[] }) {
+export default function BlogList({ blogs }: { blogs: any }) {
   const sortedBlogs = blogs.sort((a, b) =>
     compareDesc(new Date(a.publishedAt), new Date(b.publishedAt))
   );
