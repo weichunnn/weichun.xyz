@@ -3,7 +3,7 @@ import TagList from "@/components/TagsList";
 import fs from "fs";
 import YAML from "yaml";
 
-const file = fs.readFileSync("./content/shows.yml", "utf8");
+const file = fs.readFileSync("./app/shows/shows.yml", "utf8");
 const data = YAML.parse(file);
 const categories = Object.keys(data);
 
@@ -16,10 +16,11 @@ export async function generateStaticParams() {
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;
   const shows = data[slug];
+  const number = [].concat(shows["movie"]).concat(shows["series"]).length;
 
   return (
     <div>
-      <Header className="capitalize" title={slug} />
+      <Header className="capitalize mb-4" title={`${slug} (${number})`} />
       <TagList tags={categories} prefix="shows" />
       {shows["movie"] && (
         <>

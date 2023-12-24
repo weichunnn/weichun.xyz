@@ -9,7 +9,7 @@ export default function Page() {
     compareDesc(new Date(a.publishedAt), new Date(b.publishedAt))
   );
 
-  const recentBlogs = sortedBlogs.slice(0, 5);
+  const recentBlogs = sortedBlogs.slice(0, 10);
   return (
     <>
       <Header title={"Recent Blogs"} className="mb-8" />

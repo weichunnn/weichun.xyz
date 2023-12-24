@@ -1,38 +1,48 @@
 "use client";
 
 import algoliasearch from "algoliasearch/lite";
-import { InstantSearch, connectSearchBox } from "react-instantsearch-dom";
-import { connectStateResults } from "react-instantsearch-dom";
+import {
+  InstantSearch,
+  useSearchBox,
+  useHits,
+  UseHitsProps,
+  UseSearchBoxProps,
+} from "react-instantsearch";
 
 import Header from "@/components/Header";
 import BlogList from "@/components/BlogList";
 
+const algoliaClient = algoliasearch(
+  process.env.NEXT_PUBLIC_ALGOLIA_APP_ID as string,
+  process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY as string
+);
+
+const searchClient = {
+  ...algoliaClient,
+  search(requests: any) {
+    if (requests.every(({ params }: { params: any }) => !params.query)) {
+      return Promise.resolve({
+        results: requests.map(() => ({
+          hits: [],
+          nbHits: 0,
+          processingTimeMS: 0,
+        })),
+      });
+    }
+
+    return algoliaClient.search(requests);
+  },
+};
+
 export default function Page() {
-  const client = algoliasearch(
-    process.env.NEXT_PUBLIC_ALGOLIA_APP_ID as string,
-    process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY as string
-  );
-
-  const searchClient = {
-    search(requests: any) {
-      if (requests[0].params.query === "") {
-        return [];
-      }
-      return client.search(requests);
-    },
-  };
-
-  const CustomHits = connectStateResults(Hits);
-  const CustomSearchBox = connectSearchBox(SearchBox);
-
   return (
     <>
       <Header title={"Search"} />
       <div className="mt-4">
-        <InstantSearch searchClient={searchClient} indexName="blogs">
-          <CustomSearchBox />
+        <InstantSearch searchClient={searchClient as any} indexName="blogs">
+          <SearchBox />
           <div className="mt-10">
-            <CustomHits />
+            <SearchResults />
           </div>
         </InstantSearch>
       </div>
@@ -40,10 +50,12 @@ export default function Page() {
   );
 }
 
-function SearchBox({ refine }: { refine: any }) {
+function SearchBox(props: UseSearchBoxProps) {
+  const { query, refine } = useSearchBox(props);
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    refine(e.currentTarget.elements.algolia_search.value);
+    refine(e.target.elements.algolia_search.value);
   };
 
   return (
@@ -56,6 +68,7 @@ function SearchBox({ refine }: { refine: any }) {
         id="algolia_search"
         type="search"
         placeholder="Regrets"
+        defaultValue={query}
         className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-indigo-500"
       />
       <button
@@ -68,21 +81,15 @@ function SearchBox({ refine }: { refine: any }) {
   );
 }
 
-function Hits({
-  searchState,
-  searchResults,
-}: {
-  searchState: any;
-  searchResults: any;
-}) {
+function SearchResults(props: UseHitsProps) {
+  const { hits, results } = useHits(props);
+
   return (
     <>
-      {searchResults?.hits.length === 0 && (
+      {results?._state.query != "" && hits.length === 0 && (
         <p>Aw snap! No search results were found.</p>
       )}
-      {searchState && searchState.query && searchResults?.hits.length > 0 && (
-        <BlogList blogs={searchResults.hits} sorted={false} />
-      )}
+      {hits.length > 0 && <BlogList blogs={hits as any} sorted={false} />}
     </>
   );
 }

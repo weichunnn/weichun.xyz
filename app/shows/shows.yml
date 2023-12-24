@@ -5,8 +5,8 @@ sci-fi:
     - Coherence
     - Predestination
     - The Cloverfield Paradox
-    - Dune
     - 10 Cloverfield Lane
+    - Dune
     - Interstellar
   series:
     - The Expanse (#1)
@@ -16,6 +16,7 @@ sci-fi:
     - For All Mankind
     - The Rig
     - Invasion
+
 comedy:
   movie:
     - Don't Look Up
@@ -28,6 +29,7 @@ adventure:
     - Underwater
   series:
     - Ozark
+    - Snowpiercer
 
 romance:
   movie:
@@ -36,7 +38,7 @@ romance:
     - Crazy Rich Asian
     - To All The Boys I Love
 
-special:
+special-mention:
   series:
     - Suits
     - White Collar
@@ -45,6 +47,11 @@ horror:
   movie:
     - A Quiet Place I & II
     - The Mist
+
+mystery:
+  movie:
+    - Knives Out
+    - Murder on the Orient Express
 
 documentary:
   series:
