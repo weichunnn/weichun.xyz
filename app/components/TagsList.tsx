@@ -11,7 +11,7 @@ export default function TagList({
   let allTags: string[] = tags.sort();
 
   return (
-    <div className="flex flex-wrap gap-1 mb-8">
+    <div className="flex flex-wrap gap-1 mb-4">
       {allTags.map((tag, index) => {
         return <Tag key={index} tag={tag} prefix={prefix} />;
       })}
