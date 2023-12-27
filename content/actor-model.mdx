@@ -1,0 +1,56 @@
+---
+title: Actor Model
+publishedAt: 2023-12-24T15:50:27+0800
+summary: Actor Model allows processing to take place via communication through messages rather of sharing memory between different threads.
+tags:
+  - til
+---
+
+Actor Model is a conceptual model for concurrent operations. It is an alternative to the regular Object Oriented Programming way of development (where most operations are synchronous), while still maintaining a higher level abstraction than threads and locks.
+
+## Actors
+
+Actors are the most basic unit of computation. It receives a message -> does some computation -> then send it along its way to another actor. They are very lightweight to be created, requiring fewer resources than threads.
+
+Actors are isolated from each other and maintain a 'mailbox' of messages which are processed in FIFO order. Each message is a simple, immutable data structure that can be sent over the network.
+
+Note that, within an actor, processing is synchronous, but the system as a whole operates asynchronously.
+
+Actors can run both locally and remotely, allowing them to scale arbitrarily large.
+
+## Functions
+
+Actors can perform 3 basic functions:
+
+- Create more actors
+- Send messages to other actors
+- Designate actions for the next message. Remember, since state is isolated within each actor, the actor can only mutate its own state. Therefore, the next message it receives will be processed differently.
+
+## Fault Tolerance
+
+Since actors can create more actors, they form a hierarchical structure that supports self-healing. One actor can supervise multiple actors, so that if any of them fail for any reason, the supervisor can restart the actor or create a new one to replace it.
+
+This concept is also known as 'Let it Crash'. Instead of developing defensively and trying to anticipate all possible errors, we allow the actor to crash and then restart it.
+
+<Image
+  src="/images/actor-model.png"
+  alt="Hierarchical structure of Actor Model"
+/>
+
+## Caveats
+
+Since the model operates asynchronously, there is no guarantee regarding the order of messages or the timing of when they may be acted upon. Hence, atomic transactions are not possible across actors.
+
+## Use Cases & Implementations
+
+The usage of Actor model is suitable in cases:
+
+- When you can decompose your solution into a set of independent tasks.
+- When you can decompose your solution into a set of tasks linked by a clear workflow.
+
+For example:
+
+- [Video Games](https://www.youtube.com/watch?v=5DGUqcd-HWQ)
+- [Messaging system](https://discord.com/blog/how-discord-scaled-elixir-to-5-000-000-concurrent-users)
+
+Some implementation of this model can be seen in [Akka](https://akka.io) (Scala and Java), [Hollywood](https://github.com/anthdm/hollywood) (GoLang) and [Elixir](https://elixir-lang.org) (Erlang)
