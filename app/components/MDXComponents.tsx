@@ -52,11 +52,11 @@ const Embed = ({ src, ...props }: { src: string; props: any }) => {
   );
 };
 
-const Blockquote = ({ children }: { children: any }) => {
+const BlockQuote = (props: any) => {
   return (
     <div className="flex h-auto px-4">
       <div className="bg-indigo-500 rounded w-1" />
-      <span className="pl-4 flex-1">{children}</span>
+      <span className="pl-4 flex-1">{props.children}</span>
     </div>
   );
 };
@@ -65,9 +65,9 @@ const MDXComponents = {
   Embed: Embed,
   Image: CustomImage,
   a: CustomLink,
-  blockquote: Blockquote,
+  blockquote: BlockQuote,
 };
 
-export { CustomLink, CustomImage };
+export { CustomLink };
 
 export default MDXComponents;
