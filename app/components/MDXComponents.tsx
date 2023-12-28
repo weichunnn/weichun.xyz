@@ -52,10 +52,20 @@ const Embed = ({ src, ...props }: { src: string; props: any }) => {
   );
 };
 
+const Blockquote = ({ children }: { children: any }) => {
+  return (
+    <div className="flex h-auto px-4">
+      <div className="bg-indigo-500 rounded w-1" />
+      <span className="pl-4 flex-1">{children}</span>
+    </div>
+  );
+};
+
 const MDXComponents = {
   Embed: Embed,
   Image: CustomImage,
   a: CustomLink,
+  blockquote: Blockquote,
 };
 
 export { CustomLink, CustomImage };
