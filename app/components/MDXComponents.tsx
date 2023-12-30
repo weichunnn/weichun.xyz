@@ -54,9 +54,9 @@ const Embed = ({ src, ...props }: { src: string; props: any }) => {
 
 const BlockQuote = (props: any) => {
   return (
-    <div className="flex h-auto px-4">
+    <div className="flex h-auto px-4 py-2">
       <div className="bg-indigo-500 rounded w-1" />
-      <span className="pl-4 flex-1">{props.children}</span>
+      <p className="pl-4 flex-1 m-1">{props.children[1].props.children}</p>
     </div>
   );
 };
