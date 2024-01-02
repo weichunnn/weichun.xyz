@@ -37,17 +37,6 @@ export async function GET(req: NextRequest) {
         >
           {title}
         </div>
-        <p
-          style={{
-            fontSize: 40,
-            paddingTop: 40,
-            fontFamily: "barlow",
-            fontStyle: "normal",
-            color: "white",
-          }}
-        >
-          Wei Chun
-        </p>
       </div>
     ),
     {
