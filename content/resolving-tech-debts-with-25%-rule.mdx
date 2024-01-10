@@ -1,0 +1,23 @@
+---
+title: Resolving Tech Debts with 25% Rule
+publishedAt: 2024-01-09T21:04:33+0800
+summary: 
+tags:
+  - swe
+---
+
+Tech debts are like credit card debts. It is easy to get into but hard to get out of.
+I read about the 25 percent rule by Shopify and here's some notes on it.
+
+1. Tech debt can be split into 4 categories
+   - **Year Debt** -> Involves rewriting a major part of the code
+   - **Monthly Debt** -> Requires making a case to the senior leaders to allocate time to rewrite some part of the implementation e.g due to going from prototyping to actual production product, codebase stabilization etc.
+   - **Weekly Debt** -> Can be solved by adding a card to the sprint. These are usually debts that accrued due to time constraints. It doesn't have to be worked on by the discoverer, it can be assigned to someone else.
+   - **Daily Debt** -> Small debts that occur during your day to day work.
+2. We don't fix debts because:
+   - **Afraid of wasting time.** Each team feels the pressure to ship features instead of being good steward of the code bases.
+   - **Boring.** Refactoring doesn't get the praise it should. It is not as exciting as building new features. Although code deletion is the best feature since no code is the best code.
+3. 25 percent rule. The time allocation here are recommendation and not hard rules.
+   - 10% for daily debts (4 hours a week). This does not involve looking for random bad code to fix but instead this should be a part of the regular daily work. It's about empowering people to improve things which they are working on.
+   - 10% for weekly debts (4 hours a week). As a team, put items on a board to be worked on. For a team of 4, this will be equivalent to 16 hours a week (which may result in a team member working on it for a day or two).
+   - 5% for months and yearly debts (2 hours a week). This is for big refactoring that requires a lot of time and planning. The time here will be allocated to determine the why, how and when the tech debt can be addressed.
