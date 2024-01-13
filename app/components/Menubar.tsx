@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ThemeSwitch from "@/components/ThemeSwitch";
 
 export default function Menubar() {
   return (
@@ -20,6 +21,7 @@ export default function Menubar() {
         >
           pictures
         </Link>
+        <ThemeSwitch />
       </div>
     </>
   );

@@ -19,7 +19,7 @@ const CustomLink = (props: any) => {
       {...linkAttributes}
       className={
         className != "anchor"
-          ? "no-underline text-indigo-500 hover:text-indigo-700"
+          ? "no-underline text-indigo-500 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-200"
           : className
       }
     />

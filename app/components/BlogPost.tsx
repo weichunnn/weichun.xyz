@@ -1,10 +1,10 @@
-import { format, formatDistance } from 'date-fns';
-import { Blog } from 'contentlayer/generated';
-import { getMDXComponent } from 'next-contentlayer/hooks';
-import Link from 'next/link';
-import Header from './Header';
-import MDXComponents from './MDXComponents';
-import TagList from './TagsList';
+import { format, formatDistance } from "date-fns";
+import { Blog } from "contentlayer/generated";
+import { getMDXComponent } from "next-contentlayer/hooks";
+import Link from "next/link";
+import Header from "./Header";
+import MDXComponents from "./MDXComponents";
+import TagList from "./TagsList";
 
 function BlogHeader({
   title,
@@ -27,19 +27,19 @@ function BlogHeader({
   const timeAgo = formatDistance(publishedAt, new Date(), {
     addSuffix: true,
   });
-  const readPeriod = `${readTime} ${readTime > 1 ? 'minutes' : 'minute'}`;
+  const readPeriod = `${readTime} ${readTime > 1 ? "minutes" : "minute"}`;
   const timestampInformation = `${format(
     publishedAt,
-    'MMMM do, y'
+    "MMMM do, y"
   )} (${timeAgo}) • ${readPeriod}`;
   return (
     <>
-      <Link className='no-underline' href={`/blog/${slug}`}>
-        <Header title={title} className='mb-0' />
+      <Link className="no-underline" href={`/blog/${slug}`}>
+        <Header title={title} className="mb-0" />
       </Link>
-      <p className='my-2'>{timestampInformation}</p>
-      <TagList tags={tags} prefix='tag' />
-      {summary && !minimal && <p className='text-md'>tldr: {summary}</p>}
+      <p className="my-2">{timestampInformation}</p>
+      <TagList tags={tags} prefix="tag" />
+      {summary && !minimal && <p className="text-md">tldr: {summary}</p>}
     </>
   );
 }
@@ -54,7 +54,7 @@ export default function BlogPost({
   const MDXContent = getMDXComponent(blog.body.code);
 
   return (
-    <article className='prose prose-sm prose-slate m-0 max-w-[2000px]'>
+    <article className="prose dark:prose-invert prose-sm prose-slate m-0 max-w-[2000px]">
       <BlogHeader
         title={blog.title}
         date={blog.publishedAt}
