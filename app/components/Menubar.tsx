@@ -15,12 +15,6 @@ export default function Menubar() {
         <Link href="/now">now</Link>
         <Link href="/favorites">favorites</Link>
         <Link href="/search">search</Link>
-        <Link
-          href="https://photos.app.goo.gl/xaPtj5UcbkitijjK9"
-          target="_blank"
-        >
-          pictures
-        </Link>
         <ThemeSwitch />
       </div>
     </>
