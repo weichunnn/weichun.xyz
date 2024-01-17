@@ -14,8 +14,8 @@ export default function Page() {
       <ul className="list-disc grid gap-2">
         <li>Working</li>
         <li>
-          <CustomLink href="https://lu.ma/socraticakl">
-            Socratica in KL{" "}
+          <CustomLink href="https://lu.ma/luminarykl">
+            Socratica in KL
           </CustomLink>
         </li>
         <li>Reading Almanack of Naval Ravikant</li>

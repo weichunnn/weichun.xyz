@@ -83,10 +83,9 @@ function SearchBox(props: UseSearchBoxProps) {
 
 function SearchResults(props: UseHitsProps) {
   const { hits, results } = useHits(props);
-
   return (
     <>
-      {results?._state.query != "" && hits.length === 0 && (
+      {results?._state.query != "" && results?.index && hits.length === 0 && (
         <p>Aw snap! No search results were found.</p>
       )}
       {hits.length > 0 && <BlogList blogs={hits as any} sorted={false} />}

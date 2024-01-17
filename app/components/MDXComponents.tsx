@@ -3,7 +3,7 @@ import Image from "next/image";
 import LinkAttributeType from "@/interface/LinkAttributeType";
 
 const CustomLink = (props: any) => {
-  const { href, className } = props;
+  const { href, className, children, product } = props;
   const isInternalLink = href && (href.startsWith("/") || href.startsWith("#"));
 
   let linkAttributes: LinkAttributeType = {};
@@ -12,6 +12,9 @@ const CustomLink = (props: any) => {
     linkAttributes.rel = "noopener noreferrer";
   }
 
+  var linkText = children;
+  linkText += product ? " ↗" : "";
+
   return (
     <Link
       href={href}
@@ -19,10 +22,12 @@ const CustomLink = (props: any) => {
       {...linkAttributes}
       className={
         className != "anchor"
-          ? "no-underline text-indigo-500 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-200"
+          ? "underline-offset-4 decoration-2 decoration-indigo-500 hover:decoration-indigo-700 dark:decoration-indigo-400 dark:hover:decoration-indigo-200  text-indigo-500 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-200"
           : className
       }
-    />
+    >
+      {linkText}
+    </Link>
   );
 };
 

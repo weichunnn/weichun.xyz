@@ -12,7 +12,7 @@ export default function Page() {
   const recentBlogs = sortedBlogs.slice(0, 10);
   return (
     <>
-      <Header title={"Recent Blogs"} className="mb-8" />
+      <Header title={"Recent Blogs"} className="mb-4" />
 
       {recentBlogs.map((blog: Blog, index: number) => {
         return (

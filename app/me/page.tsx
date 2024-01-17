@@ -4,11 +4,11 @@ import { CustomLink } from "@/components/MDXComponents";
 export default function Page() {
   return (
     <>
-      <Header title={"Welcome"} />
-      <p className="mt-4">Hello, I'm Wei Chun.</p>
+      <Header title={"I'm weichun!"} />
+      <p className="mt-4">Welcome to my little internet garden.</p>
 
       <p className="mt-4">
-        I currently work as a platform engineer at{" "}
+        I am based of Malaysia 🇲🇾 and I currently work as a platform engineer at{" "}
         <CustomLink href="https://www.moneylion.com/">MoneyLion</CustomLink>.
         There, I build and ship big data infrastructure to support the
         organization's data needs.
@@ -42,24 +42,29 @@ export default function Page() {
         <CustomLink href="https://paywithsplit.co/">Split</CustomLink> and{" "}
         <CustomLink href="https://futurelab.my/">FutureLab</CustomLink>.
       </p>
-      <h2 className="mt-6 font-bold text-lg">Say hi!</h2>
       <p className="mt-2 mb-4">
         I like meeting new people and learning about you. Let's be friends :)
       </p>
       <ul className="list-disc">
         <li>
-          <CustomLink href="https://twitter.com/_weichunnn">Twitter</CustomLink>
-        </li>
-        <li>
-          <CustomLink href="https://github.com/weichunnn">GitHub</CustomLink>
-        </li>
-        <li>
-          <CustomLink href="https://www.linkedin.com/in/wei-chun/">
-            LinkedIn
+          <CustomLink href="https://twitter.com/_weichunnn" product>
+            Twitter (DMs open)
           </CustomLink>
         </li>
         <li>
-          <CustomLink href="https://curius.app/wei-chun-tan">Curius</CustomLink>
+          <CustomLink href="https://curius.app/wei-chun-tan" product>
+            Curius
+          </CustomLink>
+        </li>
+        <li>
+          <CustomLink href="https://github.com/weichunnn" product>
+            GitHub
+          </CustomLink>
+        </li>
+        <li>
+          <CustomLink href="https://www.linkedin.com/in/wei-chun/" product>
+            LinkedIn
+          </CustomLink>
         </li>
       </ul>
     </>
