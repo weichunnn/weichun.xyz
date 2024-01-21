@@ -30,7 +30,9 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".contentlayer/generated",
-    "scripts/build-search.mjs"
+    "scripts/build-search.mjs",
+    "scripts/generate-embeddings.mts",
+    "scripts/utils.mjs"
   ],
   "exclude": ["node_modules"]
 }
