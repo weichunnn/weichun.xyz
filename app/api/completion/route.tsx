@@ -1,4 +1,5 @@
 import OpenAI from "openai";
+import { NextRequest } from "next/server";
 import { OpenAIStream, StreamingTextResponse } from "ai";
 import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
 import { HOST, MATCH_COUNT, MATCH_THRESHOLD } from "@/constants/constant";
@@ -46,7 +47,7 @@ function generatePrompt(context: string, query: string) {
   ];
 }
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   const { prompt } = await req.json();
 
   const search = {
@@ -57,7 +58,6 @@ export async function POST(req: Request) {
 
   const options = {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(search),
   };
 

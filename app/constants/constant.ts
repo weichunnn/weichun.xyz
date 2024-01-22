@@ -1,4 +1,7 @@
-const HOST = "https://www.weichun.xyz";
+const HOST =
+  process.env.NODE_ENV == "production"
+    ? "https://weichun.xyz"
+    : "http://localhost:3000";
 
 const EMBEDDING_URL = "https://api-inference.huggingface.co/models/";
 
