@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "tsx ./app/scripts/generate-embeddings.ts",
+    "postbuild": "tsx ./app/scripts/generate.ts",
     "start": "next start",
     "lint": "next lint"
   },
