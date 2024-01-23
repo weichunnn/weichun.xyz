@@ -6,7 +6,7 @@ export const runtime = "edge";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = req.nextUrl;
-  const title = searchParams.get("title");
+  const title = searchParams.get("title") ?? "My Internet Garden";
 
   const font = fetch(
     new URL("../../../public/fonts/barlow-bold.ttf", import.meta.url)
@@ -16,26 +16,21 @@ export async function GET(req: NextRequest) {
   return new ImageResponse(
     (
       <div
+        tw="flex flex-col justify-between h-full w-full p-20 text-white text-4xl"
         style={{
-          paddingLeft: 100,
-          height: "100%",
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          justifyContent: "center",
           backgroundImage: `url(${HOST}/opengraph.png)`,
+          fontFamily: "Barlow",
         }}
       >
-        <div
-          style={{
-            fontSize: 100,
-            fontFamily: "Barlow",
-            fontStyle: "normal",
-            color: "white",
-          }}
-        >
-          {title}
+        <div tw="flex flex-row justify-between">
+          <span>blog</span>
+          <span style={{ color: "black" }}>wc</span>
+        </div>
+        <div tw="flex">
+          <div tw="flex flex-col">
+            <span tw="mb-4 text-6xl">{title}</span>
+            <span>weichun.xyz</span>
+          </div>
         </div>
       </div>
     ),
