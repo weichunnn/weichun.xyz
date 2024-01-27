@@ -7,7 +7,6 @@ import {
   KBarSearch,
   KBarResults,
   Action,
-  useKBar,
 } from "kbar";
 import {
   BracketsCurly,
@@ -188,6 +187,10 @@ const ResultItem = forwardRef(({ action }: { action: Action }, ref) => {
     </div>
   );
 });
+
+// required to overcome eslint displayName error
+// ref: https://stackoverflow.com/a/67993106
+ResultItem.displayName = "ResultItem";
 
 const Kbd = ({ children }: { children: ReactNode }) => (
   <kbd className="dark:bg-gray-500 bg-gray-300 rounded py-1 px-2 uppercase">
