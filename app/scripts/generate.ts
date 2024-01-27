@@ -6,7 +6,9 @@ import { getChangedFiles } from "./git";
 import { getEmbeddingsLocal } from "./embeddings";
 import { parseArgs } from "node:util";
 
-const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+});
 
 async function createEmbeddingsTable() {
   const client = await pool.connect();
@@ -45,6 +47,7 @@ export async function storeEmbeddings(
       `insert into "public"."documents" (content, url, title, embedding) values ($1, $2, $3, $4)`,
       [text, link, title, vector]
     );
+    console.log(`Stored embeddings for ${title} successfully`);
   } catch (error) {
     console.error(`Error storing ${title}:`, error);
   } finally {
@@ -78,9 +81,14 @@ const args = parseArgs({
 async function generate() {
   const shouldRefresh = Boolean(args.values.refresh);
 
-  const gitChanges = getChangedFiles("mdx");
+  const { allChanges, deletes } = getChangedFiles("mdx");
+
+  allBlogs
+    .filter((blog) => deletes.includes(`content/${blog._raw.sourceFilePath}`))
+    .forEach((blog) => deleteExistingEmbeddings(blog.structuredData.url));
+
   let changedBlogs = allBlogs.filter((blog) =>
-    gitChanges.includes(`content/${blog._raw.sourceFilePath}`)
+    allChanges.includes(`content/${blog._raw.sourceFilePath}`)
   );
 
   if (shouldRefresh) {
@@ -103,6 +111,7 @@ async function generate() {
       storeEmbeddings(chunk.text, url, headline)
     );
     await Promise.all(storePromises);
+    console.log(`Embeddings for ${headline} refreshed successfully`);
   }
 }
 

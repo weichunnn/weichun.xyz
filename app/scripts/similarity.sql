@@ -1,7 +1,7 @@
 create or replace function match_documents(
-  match_count int,
   query_embedding vector(1024),
   match_threshold float
+  match_count int,
 )
 returns table (
   id bigint,

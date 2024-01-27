@@ -1,35 +1,25 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
 import { getEmbeddingsRemote } from "@/scripts/embeddings";
+import { Client } from "@neondatabase/serverless";
 
 export const runtime = "edge";
 
 export async function POST(req: NextRequest) {
-  const { query, matchThreshold, matchCount } = await req.json();
-
-  const embeddingsVector = await getEmbeddingsRemote(query);
-  const embeddings = embeddingsVector[0][0];
-
-  const supabaseClient = createClient(
-    process.env.SUPABASE_PROJECT_URL as string,
-    process.env.SUPABASE_KEY as string
-  );
-
   try {
-    const { data, error } = await supabaseClient.rpc("match_documents", {
-      query_embedding: embeddings,
-      match_threshold: matchThreshold,
-      match_count: matchCount,
-    });
+    const { query, matchThreshold, matchCount } = await req.json();
+    const embeddingsVector = await getEmbeddingsRemote(query);
+    const embeddings = JSON.stringify(embeddingsVector[0][0]);
 
-    if (error) {
-      console.error("Error calling match_documents:", error);
-      return NextResponse.json({ error: error.message }, { status: 500 });
-    }
+    const client = new Client(process.env.DATABASE_URL);
+    await client.connect();
 
-    return NextResponse.json(data, { status: 200 });
+    const { rows } = await client.query(
+      `SELECT content from match_documents($1, $2, $3)`,
+      [embeddings, matchCount, matchThreshold]
+    );
+    const internalContent = rows.map((row) => row.content);
+    return NextResponse.json(internalContent, { status: 200 });
   } catch (error) {
-    console.error("Unexpected error:", error);
     return NextResponse.json(
       { error: "Unexpected error occurred" },
       { status: 500 }
