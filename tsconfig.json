@@ -29,9 +29,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    ".contentlayer/generated",
-    "scripts/generate-embeddings.mts",
-    "scripts/utils.mjs"
+    ".contentlayer/generated"
   ],
   "exclude": ["node_modules"]
 }
