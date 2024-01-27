@@ -18,6 +18,8 @@ export function getChangedFiles(extension: string) {
       if (status === "D") deletes.push(filename);
       else allChanges.push(filename);
     });
+  const res = { allChanges, deletes };
+  console.log(res);
 
-  return { allChanges, deletes };
+  return res;
 }

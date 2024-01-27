@@ -22,7 +22,7 @@ export default function Menubar() {
       console.log("searching for", now);
       complete(now);
     }
-  }, [search]);
+  }, [search, complete, currentRootActionId, now]);
 
   useRegisterActions(
     [
