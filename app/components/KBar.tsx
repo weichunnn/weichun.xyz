@@ -19,11 +19,11 @@ import {
   Scroll,
   Sun,
 } from "@phosphor-icons/react";
-
+import Markdown from "react-markdown";
 import { useTheme } from "next-themes";
-
 import { useRouter } from "next/navigation";
 import { forwardRef, ReactNode } from "react";
+import remarkGfm from "remark-gfm";
 
 export default function CommandBar({ children }: { children: ReactNode }) {
   const router = useRouter();
@@ -153,15 +153,17 @@ const ResultItem = forwardRef(({ action }: { action: Action }, ref) => {
     return (
       <div
         ref={ref as React.RefObject<HTMLDivElement>}
-        className="p-2 cursor-pointer h-64"
+        className="p-2 cursor-pointer h-72"
       >
         {action.name == "" ? (
           <div className="flex h-full items-center justify-center">
             I'm searching my brain :D
           </div>
         ) : (
-          <article className="dark:prose-invert prose-sm prose-slate">
-            {action.name}
+          <article className="prose dark:prose-invert prose-sm prose-slate">
+            <Markdown remarkPlugins={[remarkGfm as any]}>
+              {action.name}
+            </Markdown>
           </article>
         )}
       </div>
