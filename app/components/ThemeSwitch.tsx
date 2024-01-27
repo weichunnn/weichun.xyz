@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
+import { Moon, Sun } from "@phosphor-icons/react";
 
 export default function ThemeSwitch() {
   const [mounted, setMounted] = useState(false);
@@ -11,7 +12,7 @@ export default function ThemeSwitch() {
   if (!mounted) return <></>;
 
   var nextTheme = resolvedTheme === "dark" ? "light" : "dark";
-  var icon = resolvedTheme === "dark" ? "sun" : "moon";
+  var icon = resolvedTheme === "dark" ? <Sun size={20} /> : <Moon size={20} />;
 
   return (
     <span className="cursor-pointer" onClick={() => setTheme(nextTheme)}>

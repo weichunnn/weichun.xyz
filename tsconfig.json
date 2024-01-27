@@ -29,8 +29,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    ".contentlayer/generated",
-    "scripts/build-search.mjs"
+    ".contentlayer/generated"
   ],
   "exclude": ["node_modules"]
 }
