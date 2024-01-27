@@ -29,7 +29,6 @@ export default function Menubar() {
       {
         id: "initial-search",
         name: `Search ${now}`,
-        shortcut: ["s"],
         keywords: "search-blogs",
         section: "General",
         icon: <Binoculars size={20} />,
