@@ -47,7 +47,6 @@ export async function storeEmbeddings(
       `insert into "public"."documents" (content, url, title, embedding) values ($1, $2, $3, $4)`,
       [text, link, title, vector]
     );
-    console.log(`Stored embeddings for ${title} successfully`);
   } catch (error) {
     console.error(`Error storing ${title}:`, error);
   } finally {
