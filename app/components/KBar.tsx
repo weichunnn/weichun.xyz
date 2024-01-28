@@ -211,7 +211,7 @@ const Search = () => (
 );
 
 const Animator = ({ children }: { children: ReactNode }) => (
-  <KBarAnimator className="max-w-[600px] box-content w-full dark:bg-[#1C191C] bg-white shadow-lg rounded-xl overflow-hidden p-2">
+  <KBarAnimator className="max-w-[750px] box-content w-full dark:bg-[#1C191C] bg-white shadow-lg rounded-xl overflow-hidden p-2">
     {children}
   </KBarAnimator>
 );
