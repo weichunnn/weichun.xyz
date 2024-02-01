@@ -160,7 +160,7 @@ const ResultItem = forwardRef(({ action }: { action: Action }, ref) => {
             I'm searching my brain :D
           </div>
         ) : (
-          <article className="prose dark:prose-invert prose-sm prose-slate">
+          <article className="prose dark:prose-invert prose-sm prose-slate max-w-full">
             <Markdown remarkPlugins={[remarkGfm as any]}>
               {action.name}
             </Markdown>
