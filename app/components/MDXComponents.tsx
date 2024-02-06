@@ -13,7 +13,9 @@ const CustomLink = (props: any) => {
   }
 
   var linkText = children;
-  linkText += product ? " ↗" : "";
+  if (product) {
+    linkText += " ↗";
+  }
 
   return (
     <Link

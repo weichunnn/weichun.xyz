@@ -16,7 +16,7 @@
 }
 
 .prose .anchor:after {
-  @apply text-lg text-neutral-300 dark:text-neutral-700;
+  @apply text-lg dark:text-neutral-300 text-neutral-700;
   content: "#";
 }
 
