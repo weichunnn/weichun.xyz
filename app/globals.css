@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+::selection {
+  background: #9aafe6;
+}
+
 .prose .anchor {
   @apply absolute invisible no-underline;
 
