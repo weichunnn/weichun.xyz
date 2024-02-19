@@ -3,7 +3,7 @@ const HOST =
     ? "https://weichun.xyz"
     : "http://localhost:3000";
 
-const EMBEDDING_URL = "https://api-inference.huggingface.co/models/";
+const EMBEDDING_URL = "https://api.together.xyz/v1/embeddings";
 
 const EMBEDDING_MODEL = "WhereIsAI/UAE-Large-V1";
 

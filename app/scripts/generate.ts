@@ -3,7 +3,7 @@ import { Pool } from "pg";
 import { allBlogs } from ".contentlayer/generated/index.mjs";
 import { cleanMDXFile, splitIntoChunks } from "./utils";
 import { getChangedFiles } from "./git";
-import { getEmbeddingsLocal } from "./embeddings";
+import { getEmbeddingsRemote } from "./embeddings";
 import { parseArgs } from "node:util";
 
 const pool = new Pool({
@@ -41,7 +41,7 @@ export async function storeEmbeddings(
   const client = await pool.connect();
 
   try {
-    const vector = await getEmbeddingsLocal(text);
+    const vector = await getEmbeddingsRemote(text);
 
     await client.query(
       `insert into "public"."documents" (content, url, title, embedding) values ($1, $2, $3, $4)`,
@@ -104,14 +104,18 @@ async function generate() {
     if (!shouldRefresh) {
       await deleteExistingEmbeddings(url);
     }
-    const rawMDX = cleanMDXFile(blog.body.raw);
-    const chunks = await splitIntoChunks(rawMDX);
-    const storePromises = chunks.map((chunk) =>
-      storeEmbeddings(chunk.text, url, headline)
-    );
-    await Promise.all(storePromises);
+    const text = cleanMDXFile(blog.body.raw);
+    const chunks = await splitIntoChunks(text);
+    for (const chunk of chunks) {
+      await storeEmbeddings(chunk.text, url, headline);
+      await delay(1000); // Wait for 1 second before processing the next chunk
+    }
     console.log(`Embeddings for ${headline} refreshed successfully`);
   }
 }
 
 generate();
+
+function delay(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}

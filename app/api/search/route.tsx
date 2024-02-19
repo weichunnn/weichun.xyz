@@ -7,8 +7,7 @@ export const runtime = "edge";
 export async function POST(req: NextRequest) {
   try {
     const { query, matchThreshold, matchCount } = await req.json();
-    const embeddingsVector = await getEmbeddingsRemote(query);
-    const embeddings = JSON.stringify(embeddingsVector[0][0]);
+    const embeddings = await getEmbeddingsRemote(query);
 
     const client = new Client(process.env.DATABASE_URL);
     await client.connect();

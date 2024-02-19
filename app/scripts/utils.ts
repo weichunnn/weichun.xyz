@@ -1,7 +1,7 @@
 import { EMBEDDING_MODEL } from "@/constants/constant";
 import { AutoTokenizer } from "@xenova/transformers";
 
-const MAX_TOKEN = 100;
+const MAX_TOKEN = 256;
 
 function removeJSX(text: string) {
   const regex = /<[^>]+>/g;

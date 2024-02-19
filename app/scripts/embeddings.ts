@@ -12,12 +12,14 @@ export async function getEmbeddingsLocal(text: string) {
 }
 
 export async function getEmbeddingsRemote(text: string) {
-  const response = await fetch(EMBEDDING_URL + EMBEDDING_MODEL, {
+  const response = await fetch(EMBEDDING_URL, {
     headers: {
-      Authorization: `Bearer ${process.env.HUGGINGFACE_API_KEY}`,
+      Authorization: `Bearer ${process.env.TOGETHER_AI_KEY}`,
+      "Content-Type": "application/json",
     },
     method: "POST",
-    body: JSON.stringify({ inputs: text }),
+    body: JSON.stringify({ input: text, model: EMBEDDING_MODEL }),
   });
-  return await response.json();
+  const output = await response.json();
+  return JSON.stringify(output.data[0].embedding);
 }

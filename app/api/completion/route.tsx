@@ -7,7 +7,8 @@ import { HOST, MATCH_COUNT, MATCH_THRESHOLD } from "@/constants/constant";
 export const runtime = "edge";
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY as string,
+  apiKey: process.env.TOGETHER_API_KEY as string,
+  baseURL: "https://api.together.xyz/v1",
 });
 
 function generatePrompt(context: string, query: string) {
@@ -65,7 +66,7 @@ export async function POST(req: NextRequest) {
   const internalContextContent = await internalContext.json();
 
   const response = await openai.chat.completions.create({
-    model: "gpt-4-1106-preview",
+    model: "mistralai/Mistral-7B-Instruct-v0.2",
     stream: true,
     messages: generatePrompt(
       JSON.stringify(internalContextContent),
