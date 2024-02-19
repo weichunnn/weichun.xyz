@@ -13,10 +13,9 @@ export default function Page() {
   return (
     <>
       <Header title={"Recent Blogs"} className="mb-4" />
-
       {recentBlogs.map((blog: Blog, index: number) => {
         return (
-          <div className="mb-32" key={index}>
+          <div className="mb-80" key={index}>
             <BlogPost blog={blog} minimal />
           </div>
         );
