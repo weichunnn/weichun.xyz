@@ -14,7 +14,7 @@ export async function getEmbeddingsLocal(text: string) {
 export async function getEmbeddingsRemote(text: string) {
   const response = await fetch(EMBEDDING_URL, {
     headers: {
-      Authorization: `Bearer ${process.env.TOGETHER_AI_KEY}`,
+      Authorization: `Bearer ${process.env.TOGETHER_API_KEY}`,
       "Content-Type": "application/json",
     },
     method: "POST",
