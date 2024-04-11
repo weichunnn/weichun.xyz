@@ -42,31 +42,6 @@ export default function Page() {
         <CustomLink href="https://paywithsplit.co/">Split</CustomLink> and{" "}
         <CustomLink href="https://futurelab.my/">FutureLab</CustomLink>.
       </p>
-      <p className="mt-2 mb-4">
-        I like meeting new people and learning about you. Let's be friends :)
-      </p>
-      <ul className="list-disc">
-        <li>
-          <CustomLink href="https://twitter.com/_weichunnn" product>
-            Twitter (DMs open)
-          </CustomLink>
-        </li>
-        <li>
-          <CustomLink href="https://curius.app/wei-chun-tan" product>
-            Curius
-          </CustomLink>
-        </li>
-        <li>
-          <CustomLink href="https://github.com/weichunnn" product>
-            GitHub
-          </CustomLink>
-        </li>
-        <li>
-          <CustomLink href="https://www.linkedin.com/in/wei-chun/" product>
-            LinkedIn
-          </CustomLink>
-        </li>
-      </ul>
     </>
   );
 }
