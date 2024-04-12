@@ -18,7 +18,6 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <title>Wei Chun</title>
-        <meta property="og:image" content={`${HOST}/api/og`} />
         <link
           rel="icon"
           href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>"

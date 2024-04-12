@@ -3,6 +3,7 @@ import { allBlogs, Blog } from "contentlayer/generated";
 import { compareDesc } from "date-fns";
 import BlogPost from "@/components/BlogPost";
 import Header from "@/components/Header";
+import { HOST } from "./constants/constant";
 
 export default function Page() {
   const sortedBlogs = allBlogs.sort((a, b) =>
@@ -13,6 +14,7 @@ export default function Page() {
   return (
     <>
       <Header title={"Recent Blogs"} className="mb-4" />
+      <meta property="og:image" content={`${HOST}/api/og`} />
       {recentBlogs.map((blog: Blog, index: number) => {
         return (
           <div className="mb-80" key={index}>
