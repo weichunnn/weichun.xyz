@@ -30,7 +30,7 @@ export default function Page() {
           </CustomLink>
         </li>
         <li>
-          <CustomLink href="https://medium.com/@weichunnnn" product>
+          <CustomLink href="https://medium.com/@weichunnn" product>
             Medium
           </CustomLink> | {" "} 
           <CustomLink href="https://substack.com/@weichunnn" product>
