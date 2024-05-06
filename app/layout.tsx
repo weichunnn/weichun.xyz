@@ -7,7 +7,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Providers } from "@/providers";
 
 import Menubar from "@/components/Menubar";
-import { HOST } from "./constants/constant";
 
 export default function RootLayout({
   children,
@@ -18,10 +17,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <title>Wei Chun</title>
-        <link
-          rel="icon"
-          href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>"
-        />
+        <link rel="icon" href="/images/favicon/favicon.ico" sizes="any" />
       </head>
       <body className={`${GeistSans.className} pb-10`}>
         <Providers>

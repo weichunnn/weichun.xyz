@@ -61,12 +61,12 @@ const Embed = ({ src, ...props }: { src: string; props: any }) => {
 
 const BlockQuote = (props: any) => {
   return (
-    <div className="flex h-auto px-4 py-2">
-      <div className="bg-indigo-500 rounded w-1" />
-      <div className="pl-4 flex-1 m-1">
+    <div className="flex h-auto px-4">
+      <div className="bg-indigo-300 rounded w-1" />
+      <div className="pl-2 flex-1 m-1">
         {props.children.map((child: any, index: number) => {
           if (child.props) {
-            return <p key={index}>{child.props.children}</p>;
+            return <p className="mt-3 p-0" key={index}>{child.props.children}</p>;
           }
         })}
       </div>

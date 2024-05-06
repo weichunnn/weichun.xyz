@@ -40,6 +40,7 @@ export function generateMetadata({
     url: `${HOST}/api/og?title=${title}`,
   };
 
+
   return {
     metadataBase: new URL(HOST),
     title,
