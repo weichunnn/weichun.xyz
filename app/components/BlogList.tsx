@@ -23,7 +23,7 @@ export default function BlogList({
     <div className="grid grid-cols-1 gap-2">
       {(sorted ? sortedBlogs : blogs).map((blog, index) => (
         <Link key={index} href={`/blog/${blog.slug}`}>
-          <div className="flex flex-row  justify-between gap-4">
+          <div className="flex flex-row justify-between gap-4">
             <span className="flex-1" key={blog._id}>
               {blog.title}
             </span>
