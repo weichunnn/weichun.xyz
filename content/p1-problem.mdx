@@ -1,0 +1,26 @@
+---
+title: P1 problem
+publishedAt: 2024-05-16T14:40:06+0800
+summary: 
+tags:
+  - work
+---
+
+<Image src='/images/fire-work.png' alt="Fire everywhere"/>
+
+
+I don't know if it's just me, but **incidents are actually exciting** problem to work on 🫨. 
+
+Think of it this way - instead of working on your mundane day to day tasks, you are working on a high stake, time constrained problem that requires you to think on your feet. 
+
+You get roped into meetings then a bunch of you just sit down, brainstorm ideas, suggest solutions, and then execute them. It's like a mini project that you can finish in a day or two.
+
+It also tests you on whether you have enough knowledge on the system you are working on. Surface level knowledge won't cut it. You need to dig deep into the system, research on tiny details that you might have missed before, and then connect the dots to find the root cause of the problem.
+
+You also have to be able to communicate your findings in a timely manner, and in a way that everyone can understand.
+
+All around, I think that's why I like working on incidents. It's a break from the usual routine, and it's a good way to test your knowledge and skills. 
+
+Today's problem was related to some spark job running over 45 hours which then cause data to be staled downstream. It was obvious at first, but we realize that the problem was the node that are storing the intermediary data (extracted from Snowflake) was killed before the job loads the data into DocDB (our destination). This caused the job to re-run the same data over and over again and thus the long running time.
+
+We figure this out really by diving into the logs and trying to make sense of the timeline and job history from Spark's History Server.
