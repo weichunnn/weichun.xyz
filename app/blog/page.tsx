@@ -12,7 +12,7 @@ export default function Page() {
   return (
     <>
       <Header title="Blog Posts" className="mb-4" />
-      <BlogTags />
+      {/* <BlogTags /> */}
       <p className="text-sm text-gray-500 mb-4">
         {numberOfBlogs} posts / {numberOfWords} words counting on
       </p>

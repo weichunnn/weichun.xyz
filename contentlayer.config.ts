@@ -46,7 +46,6 @@ export const Blog = defineDocumentType(() => ({
     tags: {
       type: "list",
       of: { type: "string" },
-      required: true,
     },
     image: {
       type: "string",

@@ -40,8 +40,8 @@ function BlogHeader({
         <Header title={title} className="mb-0" />
       </Link>
       <p className="my-2">{timestampInformation}</p>
-      <TagList tags={tags} prefix="tag" />
-      {summary && !minimal && <p className="text-md">tldr: {summary}</p>}
+      {/* <TagList tags={tags} prefix="tag" />
+      {summary && !minimal && <p className="text-md">tldr: {summary}</p>} */}
     </>
   );
 }
