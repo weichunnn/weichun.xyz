@@ -21,7 +21,7 @@ function BlogHeader({
   date: string;
   readTime: number;
   slug: string;
-  tags: string[];
+  tags?: string[];
   summary?: string;
   minimal?: boolean;
 }) {
