@@ -57,7 +57,7 @@ export default function Menubar() {
         <Link href="/now">now</Link>
         <Link href="/blog">archives</Link>
         <Link href="https://10pm.substack.com/">newsletter</Link>
-        <Link href="/favorites">favorites</Link>
+        {/* <Link href="/favorites">favorites</Link> */}
         <Link href="/contact">say hi</Link>
         <div className="flex gap-4 mt-4 md:mt-0">
           <ThemeSwitch />
