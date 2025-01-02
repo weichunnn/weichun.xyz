@@ -22,11 +22,11 @@ export default function RootLayout({
       <body className={`${GeistSans.className} pb-10`}>
         <Providers>
           <main className="px-6 mt-10 mx-auto md:max-w-4xl md:px-12 md:mt-20">
-            <div className="flex flex-col md:flex-row">
-              <div className="pb-10 w-full md:max-w-[12rem]">
+            <div className="flex flex-col md:flex-row md:gap-10">
+              <div className="pb-10 w-full md:w-[12rem]">
                 <Menubar />
               </div>
-              <div className="flex-grow">{children}</div>
+              <div className="w-full">{children}</div>
             </div>
             <SpeedInsights />
             <Analytics />

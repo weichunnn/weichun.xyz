@@ -2,49 +2,8 @@
 
 import Link from "next/link";
 import ThemeSwitch from "@/components/ThemeSwitch";
-import { useKBar, useRegisterActions } from "kbar";
-import { useEffect, useState } from "react";
-import { useCompletion } from "ai/react";
-import { Binoculars, Command } from "@phosphor-icons/react";
 
 export default function Menubar() {
-  const { complete, completion } = useCompletion();
-  const [now, setNow] = useState("");
-
-  const { search, currentRootActionId, query } = useKBar((state) => ({
-    search: state.searchQuery,
-    currentRootActionId: state.currentRootActionId,
-  }));
-
-  useEffect(() => {
-    if (search != "") setNow(search);
-    if (currentRootActionId === "initial-search") {
-      console.log("searching for", now);
-      complete(now);
-    }
-  }, [search, complete, currentRootActionId, now]);
-
-  useRegisterActions(
-    [
-      {
-        id: "initial-search",
-        name: `Search ${now}`,
-        keywords: "search-blogs",
-        section: "General",
-        icon: <Binoculars size={20} />,
-        subtitle: "Search for something",
-        priority: 100,
-      },
-      {
-        id: "completion",
-        name: `${completion}`,
-        parent: "initial-search",
-        completion: true,
-      } as any,
-    ],
-    [now, completion]
-  );
-
   return (
     <>
       <div className="flex align-center justify-center md:justify-start">
@@ -59,13 +18,8 @@ export default function Menubar() {
         <Link href="https://10pm.substack.com/">newsletter</Link>
         {/* <Link href="/favorites">favorites</Link> */}
         <Link href="/contact">say hi</Link>
-        <div className="flex gap-4 mt-4 md:mt-0">
+        <div className="flex md:mt-0">
           <ThemeSwitch />
-          <Command
-            size={20}
-            onClick={query.toggle}
-            className="cursor-pointer"
-          />
         </div>
       </div>
     </>

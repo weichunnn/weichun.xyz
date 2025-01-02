@@ -1,24 +1,48 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getEmbeddingsRemote } from "@/scripts/embeddings";
 import { Client } from "@neondatabase/serverless";
-
+import { getEmbeddingsRemote } from "@/scripts/embeddings";
+export interface SearchResult {
+  id: string;
+  content: string;
+  slug: string;
+  title: string;
+  similarity: number;
+}
 export const runtime = "edge";
 
-export async function POST(req: NextRequest) {
+export async function GET(req: NextRequest) {
   try {
-    const { query, matchThreshold, matchCount } = await req.json();
-    const embeddings = await getEmbeddingsRemote(query);
+    const searchParams = req.nextUrl.searchParams;
+    const query = searchParams.get("q");
+    const matchThreshold = Number(searchParams.get("matchThreshold")) | 0.5;
+    const matchCount = Number(searchParams.get("matchCount")) | 10;
 
-    const client = new Client(process.env.DATABASE_URL);
-    await client.connect();
+    if (!query) {
+      return new Response("Missing query parameter", { status: 400 });
+    }
+    const embedding = await getEmbeddingsRemote(query);
 
-    const { rows } = await client.query(
-      `SELECT content from match_documents($1, $2, $3)`,
-      [embeddings, matchCount, matchThreshold]
+    const databaseClient = new Client(process.env.DATABASE_URL);
+    await databaseClient.connect();
+
+    const { rows }: { rows: SearchResult[] } = await databaseClient.query(
+      `SELECT * from match_documents($1::vector, $2, $3)`,
+      [embedding, matchThreshold, matchCount]
     );
-    const internalContent = rows.map((row) => row.content);
-    return NextResponse.json(internalContent, { status: 200 });
+    const uniqueResults = Object.values(
+      rows.reduce(
+        (acc, curr) => {
+          if (!acc[curr.slug] || acc[curr.slug].similarity < curr.similarity) {
+            acc[curr.slug] = curr;
+          }
+          return acc;
+        },
+        {} as Record<string, SearchResult>
+      )
+    );
+    return NextResponse.json(uniqueResults, { status: 200 });
   } catch (error) {
+    console.error("Error fetching search results:", error);
     return NextResponse.json(
       { error: "Unexpected error occurred" },
       { status: 500 }

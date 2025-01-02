@@ -1,2 +1,0 @@
-1. [Snowflake != Snow Crystal](https://www.npr.org/2023/12/25/1217356234/just-how-big-can-a-snowflake-get-it-depends-on-what-you-mean-by-snowflake). Crystal is the one we are used to cutting on the paper whereas snowflake is a combination of them stuck together.
-2. The 'Reference Man' is a white male in his 30s who weighs around 155 pounds. This is the 'average user' everything is built or measured for - like cars, offices, drugs etc.

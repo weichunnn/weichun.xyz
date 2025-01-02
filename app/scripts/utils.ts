@@ -1,65 +1,52 @@
 import { EMBEDDING_MODEL } from "@/constants/constant";
 import { AutoTokenizer } from "@xenova/transformers";
 
-const MAX_TOKEN = 256;
-
-function removeJSX(text: string) {
-  const regex = /<[^>]+>/g;
-  return text.replace(regex, "");
-}
-
-function extractLink(text: string) {
-  const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
-  return text.replace(regex, (match, p1, p2) => p1);
-}
-
-function replaceNewlineWithSpace(text: string) {
-  return text.replace(/\n/g, " ");
-}
+const MAX_TOKEN = 150;
 
 export function cleanMDXFile(mdxContent: string) {
   const lines = mdxContent.split("\n");
-  let currentContent = "";
-  let inCodeBlock = false;
-
-  for (const line of lines) {
-    if (line.startsWith("```")) {
-      inCodeBlock = !inCodeBlock;
-    }
-
-    if (!inCodeBlock) {
-      const processed = extractLink(removeJSX(line));
-      currentContent += `${processed}\n`;
-    } else {
-      currentContent += `${line}\n`;
-    }
-
-    currentContent = replaceNewlineWithSpace(currentContent);
-  }
-
-  return currentContent;
+  return lines
+    .filter((line) => !line.startsWith("```")) // Remove code block delimiters
+    .filter((line) => !/<[^>]+>/.test(line)) // Remove lines with JSX
+    .filter((line) => !/<Image[^>\n]*\/>/.test(line)) // Remove lines with Image component
+    .join("\n");
 }
 
 export async function splitIntoChunks(inputText: string) {
-  const sentences = inputText.split(/(?<!\d)\.(?!\d) +|(?<=[!?]) +/);
-
+  const paragraphs = inputText.split(/\n\s*\n/);
   let chunks = [];
   let currentChunk = "";
-  let currentChunkTokens = 0;
-
+  let currentChunkTokensCount = 0;
   const tokenizer = await AutoTokenizer.from_pretrained(EMBEDDING_MODEL);
 
-  for (let i = 0; i < sentences.length; i++) {
-    const sentence = sentences[i];
-    const sentenceTokens = await tokenizer.encode(sentence).length;
+  for (let i = 0; i < paragraphs.length; i++) {
+    const paragraph = paragraphs[i];
+    const paragraphTokenCount = await tokenizer.encode(paragraph).length;
 
-    if (currentChunkTokens + sentenceTokens > MAX_TOKEN) {
+    const isHeader = paragraph.trim().startsWith("#");
+    const isListItem =
+      paragraph.trim().startsWith("-") || paragraph.trim().startsWith("*");
+
+    if ((isHeader || isListItem) && currentChunk) {
       chunks.push({ text: currentChunk });
-      currentChunk = sentence;
-      currentChunkTokens = sentenceTokens;
+      currentChunk = paragraph;
+      currentChunkTokensCount = paragraphTokenCount;
+    } else if (currentChunkTokensCount + paragraphTokenCount > MAX_TOKEN) {
+      if (paragraphTokenCount > MAX_TOKEN) {
+        if (currentChunk) {
+          chunks.push({ text: currentChunk });
+        }
+        chunks.push({ text: paragraph });
+        currentChunk = "";
+        currentChunkTokensCount = 0;
+      } else {
+        chunks.push({ text: currentChunk });
+        currentChunk = paragraph;
+        currentChunkTokensCount = paragraphTokenCount;
+      }
     } else {
-      currentChunk += (currentChunk ? " " : "") + sentence;
-      currentChunkTokens += sentenceTokens;
+      currentChunk += (currentChunk ? "\n\n" : "") + paragraph;
+      currentChunkTokensCount += paragraphTokenCount;
     }
   }
 

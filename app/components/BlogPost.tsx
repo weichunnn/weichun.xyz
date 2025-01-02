@@ -2,7 +2,7 @@
 
 import { format, formatDistance } from "date-fns";
 import { Blog } from "contentlayer/generated";
-import { getMDXComponent } from "next-contentlayer/hooks";
+import { useMDXComponent } from "next-contentlayer2/hooks";
 import Link from "next/link";
 import Header from "./Header";
 import MDXComponents from "./MDXComponents";
@@ -53,7 +53,10 @@ export default function BlogPost({
   blog: Blog;
   minimal?: boolean;
 }) {
-  const MDXContent = getMDXComponent(blog.body.code);
+  if (!blog?.body?.code) {
+    console.log("adfads");
+  }
+  const MDXContent = useMDXComponent(blog.body.code);
 
   return (
     <article className="prose dark:prose-invert prose-sm prose-slate m-0 max-w-[2000px]">

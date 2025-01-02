@@ -40,6 +40,7 @@ const CustomImage = (props: any) => {
         width={600}
         height={400}
         className="rounded-xl mb-4 m-auto"
+        alt="Blog Image"
         {...props}
       />
       <p className="text-center text-sm text-gray-500 mt-0">{props.alt}</p>
@@ -66,7 +67,11 @@ const BlockQuote = (props: any) => {
       <div className="pl-2 flex-1 m-1">
         {props.children.map((child: any, index: number) => {
           if (child.props) {
-            return <p className="mt-3 p-0" key={index}>{child.props.children}</p>;
+            return (
+              <p className="mt-3 p-0" key={index}>
+                {child.props.children}
+              </p>
+            );
           }
         })}
       </div>

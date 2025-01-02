@@ -12,4 +12,3 @@ This blog page is inspired by
 - [macwright.com](https://macwright.com/)
 - [jquiambao.com](https://www.jquiambao.com/)
 - [jzhao.xyz](https://jzhao.xyz/)
-

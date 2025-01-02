@@ -5,6 +5,7 @@ import { cleanMDXFile, splitIntoChunks } from "./utils";
 import { getChangedFiles } from "./git";
 import { getEmbeddingsRemote } from "./embeddings";
 import { parseArgs } from "node:util";
+import cliProgress from "cli-progress";
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -18,10 +19,10 @@ async function createEmbeddingsTable() {
       create extension if not exists vector with schema public;
 
       create table if not exists "public"."documents" (
-        id bigserial primary key,
-        content text,
-        url text,
+        id UUID primary key default gen_random_uuid(),
         title text,
+        content text,
+        slug text,
         embedding vector(1024)
       );
     `);
@@ -35,17 +36,18 @@ async function createEmbeddingsTable() {
 
 export async function storeEmbeddings(
   text: string,
-  link: string,
+  slug: string,
   title: string
 ) {
   const client = await pool.connect();
 
   try {
     const vector = await getEmbeddingsRemote(text);
+    if (!vector) return;
 
     await client.query(
-      `insert into "public"."documents" (content, url, title, embedding) values ($1, $2, $3, $4)`,
-      [text, link, title, vector]
+      `insert into "public"."documents" (content, slug, title, embedding) values ($1, $2, $3, $4::vector)`,
+      [text, slug, title, vector]
     );
   } catch (error) {
     console.error(`Error storing ${title}:`, error);
@@ -54,16 +56,16 @@ export async function storeEmbeddings(
   }
 }
 
-async function deleteExistingEmbeddings(url: string) {
+async function deleteExistingEmbeddings(slug: string) {
   const client = await pool.connect();
 
   try {
-    await client.query(`delete from "public"."documents" where url = $1`, [
-      url,
+    await client.query(`delete from "public"."documents" where slug = $1`, [
+      slug,
     ]);
-    console.log(`Deleted existing embeddings for URL: ${url}`);
+    console.log(`Deleted existing embeddings for slug: ${slug}`);
   } catch (error) {
-    console.error(`Error deleting embeddings for URL ${url}:`, error);
+    console.error(`Error deleting embeddings for slug ${slug}:`, error);
   } finally {
     client.release();
   }
@@ -84,7 +86,11 @@ async function generate() {
 
   allBlogs
     .filter((blog) => deletes.includes(`content/${blog._raw.sourceFilePath}`))
-    .forEach((blog) => deleteExistingEmbeddings(blog.structuredData.url));
+    .forEach((blog) =>
+      deleteExistingEmbeddings(
+        blog.structuredData.url.split(`blog/`).pop() as string
+      )
+    );
 
   let changedBlogs = allBlogs.filter((blog) =>
     allChanges.includes(`content/${blog._raw.sourceFilePath}`)
@@ -98,20 +104,33 @@ async function generate() {
   }
 
   await createEmbeddingsTable();
+  const multibar = new cliProgress.MultiBar({
+    clearOnComplete: false,
+    hideCursor: true,
+    format: "{bar} | {percentage}% | {value}/{total} | {title}",
+  });
+
+  const blogBar = multibar.create(changedBlogs.length, 0, {
+    title: "Blogs Progress",
+  });
 
   for (const blog of changedBlogs) {
     const { url, headline } = blog.structuredData;
+    const slug = url.split(`blog/`).pop() as string;
     if (!shouldRefresh) {
-      await deleteExistingEmbeddings(url);
+      await deleteExistingEmbeddings(slug);
     }
     const text = cleanMDXFile(blog.body.raw);
     const chunks = await splitIntoChunks(text);
+
     for (const chunk of chunks) {
-      await storeEmbeddings(chunk.text, url, headline);
-      await delay(1000); // Wait for 1 second before processing the next chunk
+      await storeEmbeddings(chunk.text, slug, headline);
+      await delay(1000);
     }
-    console.log(`Embeddings for ${headline} refreshed successfully`);
+    blogBar.increment();
   }
+
+  multibar.stop();
 }
 
 generate();

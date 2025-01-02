@@ -4,11 +4,13 @@ import { HOST } from "@/constants/constant";
 import BlogPost from "@/components/BlogPost";
 
 export async function generateStaticParams() {
-  return allBlogs.map((blog: Blog) => blog.slug);
+  return allBlogs.map((blog: Blog) => ({
+    slug: blog.slug,
+  }));
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+  const { slug } = await params;
   const blog = allBlogs.find((blog: Blog) => blog._raw.flattenedPath === slug);
   if (!blog) throw new Error(`Blog not found for slug: ${slug}`);
 
@@ -25,11 +27,12 @@ export default async function Page({ params }: { params: { slug: string } }) {
   );
 }
 
-export function generateMetadata({
-  params: { slug },
+export async function generateMetadata({
+  params,
 }: {
   params: { slug: string };
-}): Metadata {
+}): Promise<Metadata> {
+  const { slug } = await params;
   const blog = allBlogs.find((blog) => blog.slug === slug);
 
   if (!blog) return {};
@@ -39,7 +42,6 @@ export function generateMetadata({
   const ogImage = {
     url: `${HOST}/api/og?title=${title}`,
   };
-
 
   return {
     metadataBase: new URL(HOST),

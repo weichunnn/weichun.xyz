@@ -14,7 +14,7 @@ import BlogTags from "@/components/BlogTags";
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;
   // const blogs = allBlogs.filter((blog: Blog) => blog.tags.includes(slug));
-  
+
   return (
     <>
       {/* <Header title={`Tag: ${slug} (${blogs.length})`} className="mb-4" />
