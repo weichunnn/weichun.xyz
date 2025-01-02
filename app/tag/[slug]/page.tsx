@@ -11,8 +11,8 @@ import BlogTags from "@/components/BlogTags";
 //   return Array.from(uniqueTags).map((tag) => ({ slug: tag }));
 // }
 
-export default async function Page({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+export default async function Page() {
+  // const { slug } = params;
   // const blogs = allBlogs.filter((blog: Blog) => blog.tags.includes(slug));
 
   return (
