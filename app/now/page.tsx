@@ -14,7 +14,7 @@ export default function Page() {
       <ul className="list-disc grid gap-2">
         <li>
           <CustomLink href="https://10pm.substack.com/">
-            Writing a newsletter {" "}
+            Writing a newsletter{" "}
           </CustomLink>
           (subscribe if you haven't!)
         </li>

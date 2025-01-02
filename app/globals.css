@@ -2,49 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-::selection {
-  background: #9aafe6;
-}
-
-.prose .anchor {
-  @apply absolute invisible no-underline;
-
-  margin-left: -1em;
-  width: 80%;
-  max-width: 700px;
-  cursor: pointer;
-}
-
-.prose *:hover > .anchor {
-  @apply visible;
-}
-
-.prose .anchor:after {
-  @apply text-lg dark:text-neutral-300 text-neutral-700;
-  content: "#";
-}
-
-p,
-span,
-a,
-li {
-  @apply text-sm;
-}
-
-p,
-ul,
-li {
-  @apply leading-loose;
-}
-
-li {
-  @apply my-0;
-}
-
-.task-list-item > input {
-  @apply m-0 mr-2;
-}
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -108,4 +65,47 @@ li {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+::selection {
+  background: #9aafe6;
+}
+
+.prose .anchor {
+  @apply absolute invisible no-underline;
+
+  margin-left: -1em;
+  width: 80%;
+  max-width: 700px;
+  cursor: pointer;
+}
+
+.prose *:hover > .anchor {
+  @apply visible;
+}
+
+.prose .anchor:after {
+  @apply text-lg dark:text-neutral-300 text-neutral-700;
+  content: "#";
+}
+
+p,
+span,
+a,
+li {
+  @apply text-sm;
+}
+
+p,
+ul,
+li {
+  @apply leading-loose;
+}
+
+li {
+  @apply my-0;
+}
+
+.task-list-item > input {
+  @apply m-0 mr-2;
 }

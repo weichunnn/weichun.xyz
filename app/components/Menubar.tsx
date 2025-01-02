@@ -15,10 +15,10 @@ export default function Menubar() {
         <Link href="/me">me</Link>
         <Link href="/now">now</Link>
         <Link href="/blog">blogs</Link>
-        <Link href="/search">🔎</Link>
         {/* <Link href="https://10pm.substack.com/">newsletter</Link> */}
         {/* <Link href="/favorites">favorites</Link> */}
         <Link href="/contact">say hi</Link>
+        <Link href="/search">🔎</Link>
         <div className="flex md:mt-0">
           <ThemeSwitch />
         </div>

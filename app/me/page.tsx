@@ -6,12 +6,10 @@ export default function Page() {
     <>
       <Header title={"I'm weichun!"} />
       <p className="mt-4">Welcome to my little internet garden.</p>
-
       <p className="mt-4">
-        I am based of Malaysia 🇲🇾 and I currently work as a platform engineer at{" "}
-        <CustomLink href="https://www.moneylion.com/">MoneyLion</CustomLink>.
-        There, I build and ship big data infrastructure to support the
-        organization's data needs.
+        I currently work as a founding engineer at{" "}
+        <CustomLink href="https://www.inklink.com/">InkLInk</CustomLink>. I'm
+        based out of SF.
       </p>
       <p className="mt-4">
         On a broader note, I am interested in <i>distributed computing</i> and
@@ -24,23 +22,11 @@ export default function Page() {
         <CustomLink href="https://www.monash.edu/">
           Monash University
         </CustomLink>{" "}
-        in June 2023. Some of the notable things I did include{" "}
-        <CustomLink href="https://github.com/weichunnn/soja/tree/main">
-          research and implementation of the SOJA algorithm
-        </CustomLink>
-        ,{" "}
-        <CustomLink href="https://handbook.monash.edu/2024/units/FIT2014?year=2024">
-          teaching Theory of Computation
-        </CustomLink>
-        , and{" "}
-        <CustomLink href="https://drive.google.com/file/d/1SqZ1HeCXPcry34NxDlm2OJKbznOw_LE8/view?usp=sharing">
-          building a next-gen annotation platform.
-        </CustomLink>
+        in June 2023. I am currently pursuing a MS in Data Science at USF.
       </p>
       <p className="mt-4">
         Previously, I worked at{" "}
-        <CustomLink href="https://paywithsplit.co/">Split</CustomLink> and{" "}
-        <CustomLink href="https://futurelab.my/">FutureLab</CustomLink>.
+        <CustomLink href="https://moneylion.com/">MoneyLion</CustomLink>.
       </p>
     </>
   );
