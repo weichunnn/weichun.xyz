@@ -82,7 +82,7 @@ export default function CommandBar({ children }: { children: ReactNode }) {
       keywords: "view-source",
       section: "General",
       perform: () =>
-        window.open("https://github.com/weichunnn/weichun.xyz", "_blank"),
+        window.open("https://github.com/weichunnn/weichuntan.com", "_blank"),
       icon: <BracketsCurly size={20} />,
     },
     {

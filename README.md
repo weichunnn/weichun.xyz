@@ -1,4 +1,4 @@
-# weichun.xyz
+# weichuntan.com
 
 ![Thumbnail](/public/thumbnail.png)
 

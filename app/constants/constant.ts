@@ -1,6 +1,6 @@
 const HOST =
   process.env.NODE_ENV == "production"
-    ? "https://weichun.xyz"
+    ? "https://weichuntan.com"
     : "http://localhost:3000";
 
 const EMBEDDING_MODEL = "voyageai/voyage-3";
