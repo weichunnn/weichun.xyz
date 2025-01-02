@@ -9,8 +9,11 @@ export async function generateStaticParams() {
   }));
 }
 
-type paramsType = Promise<{ slug: string }>;
-export default async function Page({ params }: { params: paramsType }) {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
   const blog = allBlogs.find((blog: Blog) => blog._raw.flattenedPath === slug);
   if (!blog) throw new Error(`Blog not found for slug: ${slug}`);
@@ -31,7 +34,7 @@ export default async function Page({ params }: { params: paramsType }) {
 export async function generateMetadata({
   params,
 }: {
-  params: paramsType;
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
   const blog = allBlogs.find((blog) => blog.slug === slug);
