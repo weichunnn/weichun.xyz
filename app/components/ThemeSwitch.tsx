@@ -11,12 +11,15 @@ export default function ThemeSwitch() {
   useEffect(() => setMounted(true), []);
   if (!mounted) return <></>;
 
-  var nextTheme = resolvedTheme === "dark" ? "light" : "dark";
-  var icon = resolvedTheme === "dark" ? <Sun size={20} /> : <Moon size={20} />;
+  const nextTheme = resolvedTheme === "dark" ? "light" : "dark";
+  const Icon = resolvedTheme === "dark" ? Sun : Moon;
 
   return (
-    <span className="cursor-pointer" onClick={() => setTheme(nextTheme)}>
-      {icon}
-    </span>
+    <div
+      className="inline-block cursor-pointer"
+      onClick={() => setTheme(nextTheme)}
+    >
+      <Icon size={20} />
+    </div>
   );
 }

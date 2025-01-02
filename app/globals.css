@@ -93,7 +93,7 @@ p,
 span,
 a,
 li {
-  @apply text-sm;
+  @apply text-lg;
 }
 
 p,
