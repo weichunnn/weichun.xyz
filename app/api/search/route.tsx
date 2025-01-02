@@ -14,6 +14,7 @@ export async function GET(req: NextRequest) {
   try {
     const searchParams = req.nextUrl.searchParams;
     const query = searchParams.get("q");
+    console.log("search queried:", query);
     const matchThreshold = Number(searchParams.get("matchThreshold")) | 0.5;
     const matchCount = Number(searchParams.get("matchCount")) | 10;
 
