@@ -16,6 +16,11 @@ export default function RootLayout({
       <head>
         <title>Wei Chun</title>
         <link rel="icon" href="/images/favicon/favicon.ico" sizes="any" />
+        <script
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id="981ff842-1a60-4807-b264-0241e83311f4"
+        ></script>
       </head>
       <body className="pb-10">
         <Providers>
