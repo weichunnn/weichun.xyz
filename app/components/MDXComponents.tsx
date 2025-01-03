@@ -37,9 +37,10 @@ const CustomImage = (props: any) => {
   return (
     <>
       <Image
-        width={600}
-        height={400}
-        className="rounded-xl mb-4 m-auto"
+        width="0"
+        height="0"
+        sizes="100vw"
+        className="rounded-xl mb-4 w-full h-auto"
         alt="Blog Image"
         {...props}
       />
